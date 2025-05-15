@@ -1,0 +1,14 @@
+JavaFX Aplikacija broj polaznika: 3 tip: PROJEKAT
+POLAZNICI
+mm1234@yahoo.com reg. br. 5
+amarkovic@gmail.com reg. br. 5
+fmitic55@raf.rs reg. br. 5
+OOP broj polaznika: 3 tip: KURS (onlajn)
+POLAZNICI
+mmarkovic22@gmail.com reg. br. 0
+pera123@gmail.com reg. br. 1
+mm1234@yahoo.com reg. br. 2
+SparkStreaming broj polaznika: 2 tip: PROJEKAT
+POLAZNICI
+mmarkovic22@gmail.com reg. br. 3
+pera123@gmail.com reg. br. 4
