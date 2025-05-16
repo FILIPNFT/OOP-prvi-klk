@@ -7,6 +7,8 @@ import OOPKol12024termin2grupa2.app.UMG;
 import OOPKol12024termin2grupa2.app.WMG;
 import OOPKol12024termin2grupa2.app.WikiMuzika;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Test {
@@ -45,14 +47,30 @@ public class Test {
         wiki.dodajAlbum(a3);
         wiki.dodajAlbum(a4);
 
-        System.out.println("Top albumi:");
-        for (Album a : wiki.listaj(true, 2)) {
-            System.out.println(a);
+        try {
+            FileWriter fw = new FileWriter("izvestaj.txt");
+
+            fw.write("Top albumi:\n");
+            System.out.println("Top albumi:");
+            for (Album a : wiki.listaj(true, 2)) {
+                String linija = a.toString() + "\n";
+                fw.write(linija);
+                System.out.println(a);
+            }
+
+            fw.write("Najmanje popularni hip-hop:\n");
+            System.out.println("Najmanje popularni hip-hop:");
+            for (Album a : wiki.listajZanr("hip-hop", false, 1)) {
+                String linija = a.toString() + "\n";
+                fw.write(linija);
+                System.out.println(a);
+            }
+
+            fw.close();
+            System.out.println("✅ Ispis završen i upisan u fajl 'izvestaj.txt'.");
+        } catch (IOException e) {
+            System.err.println("⚠️ Greška prilikom pisanja u fajl: " + e.getMessage());
         }
 
-        System.out.println("Najmanje popularni hip-hop:");
-        for (Album a : wiki.listajZanr("hip-hop", false, 1)) {
-            System.out.println(a);
-        }
     }
 }
