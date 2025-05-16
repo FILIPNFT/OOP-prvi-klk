@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Polaznik implements Registracija{
+public class Polaznik implements Registracija {
 
     private String ime;
     private String prezime;
@@ -20,36 +20,44 @@ public class Polaznik implements Registracija{
     @Override
     public boolean registruj(Obuka obuka) {
         // polaznik ima validan email (da nije null i da sadrži znak '@')
-        if(email == null || !email.contains("@")) return false; // bitan redosled provere
+        if (email == null || !email.contains("@")) {
+            return false; // bitan redosled provere
+        }
         // prvo se proverava null, jer u suprotnom bi mogao da izbaci NullPointerException
 
         // da nije već prošao (bio registrovan) tu obuku
-        if(registrovan(obuka)) return false;
+        if (registrovan(obuka)) {
+            return false;
+        }
 
         // Na kurs možemo registrovati polaznike koji su
         // prošli sve kurseve koji su preduslovi tog kursa
-        if(obuka instanceof Kurs){
+        if (obuka instanceof Kurs) {
             // da proverimo preduslove
             Kurs kurs = (Kurs) obuka;
-            int cnt=0;
-            for(Kurs preduslov : kurs.getPreduslovi()){
-                for(ObukaPolaznika op : obuke){
-                    if(preduslov.equals(op.getObuka())) {
+            int cnt = 0;
+            for (Kurs preduslov : kurs.getPreduslovi()) {
+                for (ObukaPolaznika op : obuke) {
+                    if (preduslov.equals(op.getObuka())) {
                         cnt++;
                         break;
                     }
                 }
             }
-            if(cnt < kurs.getPreduslovi().size()) return false; // polaznik nije prosao sve preduslove za kurs
-        } else if(obuka instanceof Projekat){
+            if (cnt < kurs.getPreduslovi().size()) {
+                return false; // polaznik nije prosao sve preduslove za kurs
+            }
+        } else if (obuka instanceof Projekat) {
             // za projekat imamo maksimalan broj polaznika koji mora biti ispoštovan
             Projekat projekat = (Projekat) obuka;
-            if(projekat.getMaksimalanBrojPolaznika() == projekat.getObukePolaznika().size()) return false; // ovo znaci da je projekat popunjen
+            if (projekat.getMaksimalanBrojPolaznika() == projekat.getObukePolaznika().size()) {
+                return false; // ovo znaci da je projekat popunjen
+            }
         }
 
         ObukaPolaznika op = new ObukaPolaznika(this, obuka);
         op.setRegistracioniBroj(ObukaPolaznika.getPoslednjiBroj());
-        ObukaPolaznika.setPoslednjiBroj(ObukaPolaznika.getPoslednjiBroj()+1);
+        ObukaPolaznika.setPoslednjiBroj(ObukaPolaznika.getPoslednjiBroj() + 1);
         this.obuke.add(op);
         obuka.getObukePolaznika().add(op);
 
@@ -71,9 +79,10 @@ public class Polaznik implements Registracija{
 
     @Override
     public boolean registrovan(Obuka obuka) {
-        for(ObukaPolaznika op : obuke){
-            if(op.getObuka().equals(obuka))
+        for (ObukaPolaznika op : obuke) {
+            if (op.getObuka().equals(obuka)) {
                 return true;
+            }
         }
         return false;
     }
@@ -112,8 +121,12 @@ public class Polaznik implements Registracija{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Polaznik polaznik = (Polaznik) o;
         return Objects.equals(email, polaznik.email);
     }

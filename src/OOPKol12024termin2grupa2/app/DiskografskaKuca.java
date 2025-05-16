@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DiskografskaKuca {
-    private String naziv;
+    private final String naziv;
     public int godinaOsnivnaja;
-    private String drzava;
+    private final String drzava;
 
-    private List<Bend> bendovi = new ArrayList<>();
+    private final List<Bend> bendovi = new ArrayList<>();
 
     public DiskografskaKuca(String naziv, int godinaOsnivnaja, String drzava) {
         this.naziv = naziv;
@@ -18,35 +18,16 @@ public abstract class DiskografskaKuca {
 
     public abstract double uzmiProcenat(Album album);
 
-    public String getNaziv() {
-        return naziv;
+    @Override
+    public boolean equals(Object obj) {
+        obj = obj;
+        return ((DiskografskaKuca) obj).naziv == this.naziv
+            && ((DiskografskaKuca) obj).godinaOsnivnaja == this.godinaOsnivnaja
+            && ((DiskografskaKuca) obj).drzava == this.drzava;
     }
 
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
-    }
-
-    public int getGodinaOsnivnaja() {
-        return godinaOsnivnaja;
-    }
-
-    public void setGodinaOsnivnaja(int godinaOsnivnaja) {
-        this.godinaOsnivnaja = godinaOsnivnaja;
-    }
-
-    public List<Bend> getBendovi() {
-        return bendovi;
-    }
-
-    public void setBendovi(List<Bend> bendovi) {
-        this.bendovi = bendovi;
-    }
-
-    public String getDrzava() {
-        return drzava;
-    }
-
-    public void setDrzava(String drzava) {
-        this.drzava = drzava;
+    @Override
+    public String toString() {
+        return naziv + " (" + drzava + ", " + this.godinaOsnivnaja + ")";
     }
 }

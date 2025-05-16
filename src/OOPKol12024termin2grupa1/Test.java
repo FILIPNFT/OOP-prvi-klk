@@ -5,7 +5,7 @@ import OOPKol12024termin2grupa1.voters.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Test {
@@ -85,9 +85,9 @@ public class Test {
 
         // Ispis u fajl
         List<String> rezultati = evrovizija.getFinalnaRunda().stream()
-                .sorted((a, b) -> Integer.compare(b.getPoeni(), a.getPoeni()))
-                .map(p -> p.getZemlja().getNaziv() + " - " + p.getNaziv() + ", " + p.getPoeni())
-                .collect(Collectors.toList());
+            .sorted((a, b) -> Integer.compare(b.getPoeni(), a.getPoeni()))
+            .map(p -> p.getZemlja().getNaziv() + " - " + p.getNaziv() + ", " + p.getPoeni())
+            .collect(Collectors.toList());
 
         Files.write(Paths.get("rezultati_evrovizije.txt"), rezultati);
     }

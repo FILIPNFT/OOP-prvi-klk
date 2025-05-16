@@ -56,6 +56,5 @@ public class Test {
         coursera.getObuke().add(projekat2);
 
         coursera.ispisSvihOdrzivihObuka(true);
-
     }
 }

@@ -3,7 +3,7 @@ package KLKPRVI2024;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrivateChat implements Chat{
+public class PrivateChat implements Chat {
     private Korisnik k1;
     private Korisnik k2;
 
@@ -18,8 +18,12 @@ public class PrivateChat implements Chat{
 
     @Override
     public boolean mozeNapisatiPoruku(Korisnik korisnik) {
-        if(!korisnik.equals(k1) && !korisnik.equals(k2)) return false;
-        if(prethodniPosiljalac == null) return korisnik.equals(k1);
+        if (!korisnik.equals(k1) && !korisnik.equals(k2)) {
+            return false;
+        }
+        if (prethodniPosiljalac == null) {
+            return korisnik.equals(k1);
+        }
         return !prethodniPosiljalac.equals(korisnik);
     }
 

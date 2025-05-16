@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Ziri implements Glasac {
-    private int brojClanova;
+    private final int brojClanova;
 
     public Ziri(int brojClanova) {
         this.brojClanova = brojClanova;
@@ -18,7 +18,9 @@ public class Ziri implements Glasac {
         for (Pesma p : pesme) {
             int glasovi = 0;
             for (int i = 0; i < brojClanova; i++) {
-                if (rand.nextBoolean()) glasovi++;
+                if (rand.nextBoolean()) {
+                    glasovi++;
+                }
             }
             rezultati.add(new Glasanje(p, glasovi));
         }

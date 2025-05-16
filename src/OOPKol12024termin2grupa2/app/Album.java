@@ -1,23 +1,30 @@
 package OOPKol12024termin2grupa2.app;
 
+import java.time.LocalDate;
+
 public class Album {
     private String naziv;
     private double cena;
     private int brojProdatihJedinica;
     private String zanrovi;
     private int trajanje;
+    private LocalDate datumIzdavanja;
 
     private Medij medij;
     private Bend bend;
     private DiskografskaKuca kuca;
 
-    public Album(String naziv, double cena, String zanrovi, int trajanje, Bend bend, DiskografskaKuca kuca) {
+    public Album(String naziv, double cena, int brojProdatihJedinica, String zanrovi,
+        int trajanjeUMinutima, LocalDate datumIzdavanja,
+        DiskografskaKuca diskografskaKuca, Bend bend) {
         this.naziv = naziv;
         this.cena = cena;
+        this.brojProdatihJedinica = brojProdatihJedinica;
         this.zanrovi = zanrovi;
-        this.trajanje = trajanje;
+        this.trajanje = trajanjeUMinutima;
+        this.datumIzdavanja = datumIzdavanja;
+        this.kuca = diskografskaKuca;
         this.bend = bend;
-        this.kuca = kuca;
 
         this.medij = trajanje < 45 ? Medij.EP : Medij.LP;
     }
@@ -86,9 +93,22 @@ public class Album {
         this.kuca = kuca;
     }
 
+    public LocalDate getDatumIzdavanja() {
+        return datumIzdavanja;
+    }
+
+    public void setDatumIzdavanja(LocalDate datumIzdavanja) {
+        this.datumIzdavanja = datumIzdavanja;
+    }
+
     @Override
     public boolean equals(Object obj) {
         return ((Album) obj).naziv == this.naziv && ((Album) obj).bend == this.bend;
+    }
+
+    @Override
+    public String toString() {
+        return naziv + " (" + this.getMedij() + ") - " + brojProdatihJedinica + " jedinica";
     }
 }
 

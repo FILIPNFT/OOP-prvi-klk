@@ -1,5 +1,8 @@
 package KolokvijumskiZadatakOOP;
 
 public enum Oblast {
-    STATISTIKA, SLIKARSTVO, PODACI, PROGRAMIRANJE
+    STATISTIKA,
+    SLIKARSTVO,
+    PODACI,
+    PROGRAMIRANJE
 }

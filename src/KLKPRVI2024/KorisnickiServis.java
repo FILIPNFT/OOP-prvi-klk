@@ -6,13 +6,19 @@ import java.util.Map;
 public class KorisnickiServis {
     private Map<String, Korisnik> korisnici = new HashMap<>();
 
-    public boolean registruj(String ime,String korisnickoIme, String lozinka1,  String lozinka2) {
-        if(!lozinka1.equals(lozinka2))return false;
-        if(korisnici.containsKey(korisnickoIme))return false;
+    public boolean registruj(String ime, String korisnickoIme, String lozinka1, String lozinka2) {
+        if (!lozinka1.equals(lozinka2)) {
+            return false;
+        }
+        if (korisnici.containsKey(korisnickoIme)) {
+            return false;
+        }
         if (lozinka1.length() < 8 || !lozinka1.matches(".*\\d.*") ||
-                !lozinka1.matches(".*[a-z].*") || !lozinka1.matches(".*[A-Z].*")) return false;
+            !lozinka1.matches(".*[a-z].*") || !lozinka1.matches(".*[A-Z].*")) {
+            return false;
+        }
 
-        korisnici.put(korisnickoIme,new Korisnik(ime,korisnickoIme,lozinka1));
+        korisnici.put(korisnickoIme, new Korisnik(ime, korisnickoIme, lozinka1));
         return true;
     }
 

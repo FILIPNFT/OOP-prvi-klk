@@ -21,9 +21,11 @@ public class Zemlja implements Glasac {
     public List<Glasanje> glasaj(List<Pesma> pesme) {
         Map<Pesma, Integer> glasovi = new HashMap<>();
         List<Pesma> validnePesme = pesme.stream()
-                .filter(p -> !p.getZemlja().equals(this))
-                .collect(Collectors.toList());
-        if (validnePesme.isEmpty()) return List.of();
+            .filter(p -> !p.getZemlja().equals(this))
+            .collect(Collectors.toList());
+        if (validnePesme.isEmpty()) {
+            return List.of();
+        }
 
         Random rand = new Random();
         for (int i = 0; i < populacija; i++) {
@@ -31,12 +33,17 @@ public class Zemlja implements Glasac {
             glasovi.put(p, glasovi.getOrDefault(p, 0) + 1);
         }
         return glasovi.entrySet().stream()
-                .map(e -> new Glasanje(e.getKey(), e.getValue()))
-                .collect(Collectors.toList());
+            .map(e -> new Glasanje(e.getKey(), e.getValue()))
+            .collect(Collectors.toList());
     }
 
-    public String getNaziv() { return naziv; }
-    public boolean isDirektnoUFInale() { return direktnoUFInale; }
+    public String getNaziv() {
+        return naziv;
+    }
+
+    public boolean isDirektnoUFInale() {
+        return direktnoUFInale;
+    }
 
     public void setNaziv(String naziv) {
         this.naziv = naziv;

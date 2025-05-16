@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.Random;
 
 public class Beovizija extends Takmicenje {
-    private Zemlja zemljaDomacin;
+    private final Zemlja zemljaDomacin;
 
     public Beovizija(Zemlja zemljaDomacin) {
         this.zemljaDomacin = zemljaDomacin;
@@ -20,9 +20,13 @@ public class Beovizija extends Takmicenje {
 
     @Override
     public void eliminacionaRunda() {
-        for (Pesma p : pesme) p.resetuj();
+        for (Pesma p : pesme) {
+            p.resetuj();
+        }
 
-        if (pesme.isEmpty()) return;
+        if (pesme.isEmpty()) {
+            return;
+        }
         Random rand = new Random();
         // Publika glasa
         for (int i = 0; i < zemljaDomacin.getPopulacija(); i++) {
@@ -44,9 +48,13 @@ public class Beovizija extends Takmicenje {
 
     @Override
     public Pesma finalnaRunda() {
-        if (finalnaRunda == null || finalnaRunda.isEmpty()) return null;
+        if (finalnaRunda == null || finalnaRunda.isEmpty()) {
+            return null;
+        }
 
-        for (Pesma p : finalnaRunda) p.resetuj();
+        for (Pesma p : finalnaRunda) {
+            p.resetuj();
+        }
 
         Random rand = new Random();
         // Publika glasa
@@ -63,7 +71,7 @@ public class Beovizija extends Takmicenje {
         }
 
         return finalnaRunda.stream()
-                .max(Comparator.comparingInt(Pesma::getGlasovi))
-                .orElse(null);
+            .max(Comparator.comparingInt(Pesma::getGlasovi))
+            .orElse(null);
     }
 }

@@ -3,7 +3,7 @@ package KLKPRVI2024;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GroupChat implements Chat{
+public class GroupChat implements Chat {
     private List<Korisnik> grupa = new ArrayList<>();
     private List<String> posiljalac = new ArrayList<>();
     private List<String> poruke = new ArrayList<>();
@@ -12,9 +12,9 @@ public class GroupChat implements Chat{
     }
 
     public void dodajUGrupu(Korisnik korisnik) {
-        if(grupa.contains(korisnik))
+        if (grupa.contains(korisnik)) {
             System.out.println("Korisnik vec postoji");
-        else{
+        } else {
             grupa.add(korisnik);
         }
     }

@@ -9,6 +9,7 @@ public abstract class Takmicenje {
     protected List<Ziri> ziriji = new ArrayList<>();
 
     public abstract void eliminacionaRunda();
+
     public abstract Pesma finalnaRunda();
 
     public void dodajZiri(Ziri ziri) {
@@ -19,5 +20,7 @@ public abstract class Takmicenje {
         pesme.add(p);
     }
 
-    public List<Pesma> getFinalnaRunda() { return finalnaRunda; }
+    public List<Pesma> getFinalnaRunda() {
+        return finalnaRunda;
+    }
 }

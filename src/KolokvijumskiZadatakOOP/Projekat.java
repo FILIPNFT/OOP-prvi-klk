@@ -1,7 +1,8 @@
 package KolokvijumskiZadatakOOP;
 
-public class Projekat extends Obuka{
+public class Projekat extends Obuka {
     private int maksimalanBrojPolaznika;
+
     public Projekat(String naziv, int minimalanBrojPolaznika, Oblast oblast, int maksimalanBrojPolaznika) {
         super(naziv, minimalanBrojPolaznika, oblast);
         this.maksimalanBrojPolaznika = maksimalanBrojPolaznika;

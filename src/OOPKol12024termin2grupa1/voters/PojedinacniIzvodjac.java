@@ -1,7 +1,7 @@
 package OOPKol12024termin2grupa1.voters;
 
 public class PojedinacniIzvodjac extends Izvodjac {
-    private Tip tip;
+    private final Tip tip;
 
     public PojedinacniIzvodjac(String ime, Tip tip) {
         super(ime);

@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Obuka implements Comparable<Obuka>{
+public abstract class Obuka implements Comparable<Obuka> {
     private String naziv;
     private int minimalanBrojPolaznika;
     private Oblast oblast;
-    private List<ObukaPolaznika> obukePolaznika = new ArrayList<>();
-    private List<Profesor> predavaci = new ArrayList<>();
+    private final List<ObukaPolaznika> obukePolaznika = new ArrayList<>();
+    private final List<Profesor> predavaci = new ArrayList<>();
 
     public Obuka(String naziv, int minimalanBrojPolaznika, Oblast oblast) {
         this.naziv = naziv;
@@ -51,8 +51,12 @@ public abstract class Obuka implements Comparable<Obuka>{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Obuka obuka = (Obuka) o;
         return Objects.equals(naziv, obuka.naziv);
     }
@@ -67,7 +71,7 @@ public abstract class Obuka implements Comparable<Obuka>{
         return naziv;
     }
 
-    public String info(){
+    public String info() {
         return naziv + " broj polaznika: " + obukePolaznika.size();
     }
 
@@ -90,7 +94,7 @@ public abstract class Obuka implements Comparable<Obuka>{
     @Override
     public int compareTo(Obuka o) {
         int rez = this.obukePolaznika.size() - o.getObukePolaznika().size();
-        if(rez == 0){
+        if (rez == 0) {
             // isti broj polaznika, onda poredi po nazivu
             return this.naziv.compareTo(o.naziv);
         }

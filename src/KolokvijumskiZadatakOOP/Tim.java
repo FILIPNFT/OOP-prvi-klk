@@ -3,19 +3,19 @@ package KolokvijumskiZadatakOOP;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tim implements Registracija{
+public class Tim implements Registracija {
 
     private Polaznik vodja;
     private List<Polaznik> polaznici = new ArrayList<>();
     private Oblast oblast;
 
-    public Tim(){
+    public Tim() {
         this.oblast = Oblast.PROGRAMIRANJE;
     }
 
     @Override
     public boolean registruj(Obuka obuka) {
-        for(Polaznik polaznik : polaznici) {
+        for (Polaznik polaznik : polaznici) {
             ObukaPolaznika obukaPolaznika = new ObukaPolaznika(polaznik, obuka);
             obukaPolaznika.setRegistracioniBroj(ObukaPolaznika.getPoslednjiBroj());
             polaznik.getObuke().add(obukaPolaznika);

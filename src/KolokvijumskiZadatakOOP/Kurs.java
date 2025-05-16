@@ -5,7 +5,8 @@ import java.util.List;
 
 public class Kurs extends Obuka {
     private boolean onlajn;
-    private List<Kurs> preduslovi = new ArrayList<>();
+    private final List<Kurs> preduslovi = new ArrayList<>();
+
     public Kurs(String naziv, int minimalanBrojPolaznika, Oblast oblast, boolean onlajn) {
         super(naziv, minimalanBrojPolaznika, oblast);
         this.onlajn = onlajn;
@@ -25,9 +26,10 @@ public class Kurs extends Obuka {
 
     @Override
     public String info() {
-        if(onlajn)
+        if (onlajn) {
             return super.info() + " tip: KURS (onlajn)";
-        else
+        } else {
             return super.info() + " tip: KURS";
+        }
     }
 }

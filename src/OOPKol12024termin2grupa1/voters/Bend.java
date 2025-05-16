@@ -4,14 +4,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Bend extends Izvodjac {
-    private Set<PojedinacniIzvodjac> clanovi = new HashSet<>();
+    private final Set<PojedinacniIzvodjac> clanovi = new HashSet<>();
 
     public Bend(String ime) {
         super(ime);
     }
 
     public boolean dodajClana(PojedinacniIzvodjac p) {
-        if (p.getTip() == Tip.PLESAC) return false;
+        if (p.getTip() == Tip.PLESAC) {
+            return false;
+        }
         return clanovi.add(p);
     }
 

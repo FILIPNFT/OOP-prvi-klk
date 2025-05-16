@@ -12,8 +12,8 @@ public class Korisnik {
     }
 
     public boolean napisiPoruku(Chat chat, String poruka) {
-        if(chat.mozeNapisatiPoruku(this)){
-            chat.dodajPoruku(this,poruka);
+        if (chat.mozeNapisatiPoruku(this)) {
+            chat.dodajPoruku(this, poruka);
             return true;
         }
         return false;

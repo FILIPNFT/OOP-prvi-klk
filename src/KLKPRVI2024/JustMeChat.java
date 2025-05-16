@@ -3,7 +3,7 @@ package KLKPRVI2024;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JustMeChat implements Chat{
+public class JustMeChat implements Chat {
     private Korisnik korisnik;
     private List<String> poruke = new ArrayList<>();
 

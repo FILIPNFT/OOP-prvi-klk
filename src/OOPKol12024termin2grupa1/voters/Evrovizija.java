@@ -1,10 +1,15 @@
 package OOPKol12024termin2grupa1.voters;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Evrovizija extends Takmicenje {
-    private List<Zemlja> zemlje = new ArrayList<>();
+    private final List<Zemlja> zemlje = new ArrayList<>();
 
     public void dodajZemlju(Zemlja z) {
         zemlje.add(z);
@@ -12,15 +17,19 @@ public class Evrovizija extends Takmicenje {
 
     @Override
     public void dodajPesmu(Pesma p) {
-        if (p == null || p.getNaziv() == null || p.getZemlja() == null) return;
+        if (p == null || p.getNaziv() == null || p.getZemlja() == null) {
+            return;
+        }
 
         boolean vecPostojiIstaPesma = pesme.stream()
-                .anyMatch(x -> x != null && x.getNaziv() != null && x.getNaziv().equals(p.getNaziv()));
+            .anyMatch(x -> x != null && x.getNaziv() != null && x.getNaziv().equals(p.getNaziv()));
 
         boolean vecPostojiIzZemlje = pesme.stream()
-                .anyMatch(x -> x != null && x.getZemlja() != null && x.getZemlja().equals(p.getZemlja()));
+            .anyMatch(x -> x != null && x.getZemlja() != null && x.getZemlja().equals(p.getZemlja()));
 
-        if (vecPostojiIstaPesma || vecPostojiIzZemlje) return;
+        if (vecPostojiIstaPesma || vecPostojiIzZemlje) {
+            return;
+        }
 
         pesme.add(p);
     }
@@ -28,11 +37,11 @@ public class Evrovizija extends Takmicenje {
     @Override
     public void eliminacionaRunda() {
         List<Pesma> kandidati = pesme.stream()
-                .filter(p -> !p.getZemlja().isDirektnoUFInale())
-                .collect(Collectors.toList());
+            .filter(p -> !p.getZemlja().isDirektnoUFInale())
+            .collect(Collectors.toList());
         List<Pesma> direktne = pesme.stream()
-                .filter(p -> p.getZemlja().isDirektnoUFInale())
-                .collect(Collectors.toList());
+            .filter(p -> p.getZemlja().isDirektnoUFInale())
+            .collect(Collectors.toList());
 
         for (Zemlja z : zemlje) {
             for (Glasanje g : z.glasaj(kandidati)) {
@@ -48,7 +57,9 @@ public class Evrovizija extends Takmicenje {
 
     @Override
     public Pesma finalnaRunda() {
-        for (Pesma p : finalnaRunda) p.resetuj();
+        for (Pesma p : finalnaRunda) {
+            p.resetuj();
+        }
 
         for (Zemlja z : zemlje) {
             for (Glasanje g : z.glasaj(finalnaRunda)) {
@@ -71,8 +82,8 @@ public class Evrovizija extends Takmicenje {
         }
 
         return finalnaRunda.stream()
-                .max(Comparator.comparingInt(Pesma::getPoeni))
-                .orElse(null);
+            .max(Comparator.comparingInt(Pesma::getPoeni))
+            .orElse(null);
     }
 
     private Map<Pesma, Integer> dodeliPoenePoGlasovima(List<Pesma> lista) {
@@ -81,15 +92,15 @@ public class Evrovizija extends Takmicenje {
 
     private Map<Pesma, Integer> dodeliPoenePoMapi(Map<Pesma, Integer> mapa) {
         return mapa.entrySet().stream()
-                .sorted(Map.Entry.<Pesma, Integer>comparingByValue().reversed())
-                .limit(12)
-                .collect(Collectors.toMap(
-                        Map.Entry::getKey,
-                        e -> 12 - mapa.entrySet().stream()
-                                .sorted(Map.Entry.<Pesma, Integer>comparingByValue().reversed())
-                                .collect(Collectors.toList()).indexOf(e),
-                        (a, b) -> a,
-                        LinkedHashMap::new
-                ));
+            .sorted(Map.Entry.<Pesma, Integer>comparingByValue().reversed())
+            .limit(12)
+            .collect(Collectors.toMap(
+                Map.Entry::getKey,
+                e -> 12 - mapa.entrySet().stream()
+                    .sorted(Map.Entry.<Pesma, Integer>comparingByValue().reversed())
+                    .collect(Collectors.toList()).indexOf(e),
+                (a, b) -> a,
+                LinkedHashMap::new
+            ));
     }
 }
